@@ -1,0 +1,148 @@
+{
+  "program_name": "rubato",
+  "grpc_addr": "localhost:50052",
+  "client_id": 0,
+  "device_id": 0,
+  "dns_shadow_server": {
+    "enabled": true,
+    "listen": "0.0.0.0:18080"
+  },
+  "sample_interval_s": 0.5,
+  "online_dbsp": {
+    "enabled": true,
+    "profiles_file": "config/platform_p95.json",
+    "solver_path": "build/dbsp_planner",
+    "audit_file": "results/online_dbsp/events.jsonl",
+    "heartbeat_file": "results/online_dbsp/heartbeat.json",
+    "video_queues": 7,
+    "dev_port": 52,
+    "pipe": 0,
+    "capacity_bps": 50000000000,
+    "buffer_bytes": 1048576,
+    "queue_limit_cells": 24256,
+    "cell_size_bytes": 80,
+    "max_burst_size": 12000,
+    "observation_ttl_s": 30.0,
+    "flow_idle_s": 60.0,
+    "plan_ttl_s": 5.0,
+    "solve_timeout_s": 2.0
+  },
+  "behavior": {
+    "window_seconds": 0.5,
+    "sample_duration_seconds": 60.0,
+    "active_min_bytes": 32768,
+    "min_burst_bytes": 262144,
+    "min_burst_windows": 1,
+    "min_idle_windows": 1,
+    "stable_min_bursts": 3,
+    "stable_max_interval_cv": 0.35,
+    "recurrent_min_bursts": 3,
+    "recurrent_min_total_bytes": 1000000,
+    "recurrent_max_active_ratio": 0.90
+  },
+  "reject_ttl_s": 60.0,
+  "bloom_depth": 1024,
+  "cms_depth": 1024,
+  "default_q": 0,
+  "video_q": 1,
+  "fixed_forwarding": [
+    {"ingress_port": 52, "egress_port": 60},
+    {"ingress_port": 60, "egress_port": 52}
+  ],
+  "force_video_flows": {"ipv4": [], "ipv6": []},
+  "ports": {
+    "enabled": true,
+    "fail_on_error": false,
+    "commands": [
+      "ucli",
+      "pm",
+      "port-add 9/0 100g rs",
+      "port-add 10/0 100g rs",
+      "an-set 9/0 2",
+      "an-set 10/0 2",
+      "kr-set 9/0 2",
+      "kr-set 10/0 2",
+      "port-enb -/-"
+    ]
+  },
+  "queue_control_interval_s": 1.0,
+  "queue_depth_max": 24256,
+  "lpf_index_count": 2048,
+  "short_lpf_gain_time_constant_ns": 50000000.0,
+  "short_lpf_decay_time_constant_ns": 50000000.0,
+  "short_lpf_out_scale_down_factor": 0,
+  "long_lpf_gain_time_constant_ns": 1000000000.0,
+  "long_lpf_decay_time_constant_ns": 1000000000.0,
+  "long_lpf_out_scale_down_factor": 0,
+  "tm": {
+    "backend": "thrift",
+    "queues_per_port_group": 32,
+    "thrift_host": "localhost",
+    "thrift_port": 9090,
+    "pipe": 0,
+    "arch_candidates": ["tf1", "tf2"],
+    "queues": [
+      {
+        "name": "nic1_to_nic2_video",
+        "dev_port": 52,
+        "pipe": 0,
+        "lpf_index": 308,
+        "default_q": 0,
+        "video_q": 1,
+        "initial_video_max_rate_kbps": 20000,
+        "min_video_rate_kbps": 1000,
+        "max_video_rate_kbps": 100000000,
+        "max_burst_size": 12000
+      }
+    ],
+    "unit": "BPS",
+    "provisioning": "MIN_ERROR",
+    "default_priority": "HIGH",
+    "video_priority": "LOW",
+    "default_dwrr_weight": 1,
+    "video_dwrr_weight": 1,
+    "video_base_rate_kbps": 0,
+    "video_input_rate_kbps": 0,
+    "max_burst_size": 12000,
+    "cell_size_bytes": 80,
+    "long_lpf_low_ratio": 0.10,
+    "long_lpf_high_ratio": 0.40,
+    "long_lpf_target_ratio": 0.25,
+    "long_lpf_gain": 1.0,
+    "min_control_factor": 0.75,
+    "max_control_factor": 4.0,
+    "below_low_multiplier": 0.75,
+    "above_high_multiplier": 1.25,
+    "rate_update_deadband": 0.05,
+    "idle_ratio_epsilon": 0.001,
+    "threshold_60": 0.60,
+    "threshold_75": 0.75,
+    "threshold_90": 0.90,
+    "multiplier_60": 2,
+    "multiplier_75": 4
+  },
+  "platform_ids": {
+    "unknown": 0,
+    "bilibili": 1,
+    "youtube": 2,
+    "netflix": 3
+  },
+  "strong_media_suffixes": [
+    "bilivideo.com",
+    "bilivideo.cn",
+    "bilivideo.net",
+    "acgvideo.com",
+    "googlevideo.com",
+    "nflxvideo.net"
+  ],
+  "strong_media_exact_hosts": [],
+  "embedded_strong_markers": [],
+  "media_prefixes": {
+    "ipv4": [],
+    "ipv6": []
+  },
+  "static_media_ips": {
+    "ipv4": [],
+    "ipv6": []
+  }
+}

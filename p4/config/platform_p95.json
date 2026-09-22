@@ -1,0 +1,49 @@
+{
+  "burst_definition": "closed >=256KiB runs of >=32KiB/0.5s active bins; first run excluded",
+  "missing_platform_policy": "bypass; never substitute synthetic bitrate-ladder sizes",
+  "platforms": {
+    "bilibili": {
+      "budget_basis": "ns-3 static profile margin: historic observed buffer p05; NOT a live-player guarantee",
+      "buffer_margin_s": 39.52,
+      "buffer_samples": 90,
+      "buffer_source": {
+        "platform_profiles.json": "fe77525dffa901143846ef67f2a242bae5dd9fa6559412bb8104c5810105e9ec"
+      },
+      "burst_p95_bytes": 1554588,
+      "burst_samples": 1379,
+      "capture_samples": 498,
+      "confidence": 0.8,
+      "observed_buffer_p05_s": 39.52,
+      "quantile": "empirical_nearest_rank_0.95",
+      "source": {
+        "bilibili_flow_sequences.jsonl.gz": "1143864d8c683dc77f81c00c85c19e2169471fd70f8c20e1e807a6cefc959bc9"
+      },
+      "split": "historical_calibration; not held-out hardware evaluation",
+      "theta": 1.2,
+      "weight": 1.0,
+      "window_s": 0.5
+    },
+    "youtube": {
+      "budget_basis": "ns-3 static profile margin: historic observed buffer p05; NOT a live-player guarantee",
+      "buffer_margin_s": 16.94,
+      "buffer_samples": 40,
+      "buffer_source": {
+        "platform_profiles.json": "fe77525dffa901143846ef67f2a242bae5dd9fa6559412bb8104c5810105e9ec"
+      },
+      "burst_p95_bytes": 2092851,
+      "burst_samples": 28813,
+      "capture_samples": 2737,
+      "confidence": 0.8,
+      "observed_buffer_p05_s": 16.94,
+      "quantile": "empirical_nearest_rank_0.95",
+      "source": {
+        "youtube_positive_sequences.jsonl.gz": "4bdc226a647bc7c4a78ba9862a3bc3f13f9df0e1e64d623ee298062c37e2cfee"
+      },
+      "split": "historical_calibration; not held-out hardware evaluation",
+      "theta": 1.2,
+      "weight": 1.0,
+      "window_s": 0.5
+    }
+  },
+  "schema": "rubato_platform_p95_v1"
+}
